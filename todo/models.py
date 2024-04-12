@@ -9,5 +9,11 @@ class Todo(models.Model):
     created_at = models.DateField(default=datetime.date.today)
     user = models.ForeignKey('auth.User', related_name='todos', on_delete=models.CASCADE)
 
+    def time_passed(self):
+        today = datetime.date.today()
+        delte = today - self.created_at
+
+        return delte.days
+
     def __str__(self):
         return self.title
